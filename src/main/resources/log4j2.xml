@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<Appenders>
+		<RollingRandomAccessFile name="activity-log"
+			fileName="logs/logic-sri.log" filePattern="logs/logic-sri-%d{yyyy-MM-dd}.log">
+			<DefaultRolloverStrategy max="50" />
+			<PatternLayout
+				pattern="%d{yyyyMMdd HH:mm:ss.SSS} %-5level[%c{1}] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true"
+					interval="1" />
+				<SizeBasedTriggeringPolicy size="200 MB" />
+			</Policies>
+		</RollingRandomAccessFile>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="TRACE">
+			<AppenderRef ref="activity-log" />
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>
